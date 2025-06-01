@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSV Data Analyst (TinyLLaMA)</title>
+</head>
+<body>
+    <h2>Upload CSV + Ask a Question</h2>
+    <form method="post" enctype="multipart/form-data">
+        <label>Prompt:</label><br>
+        <textarea name="prompt" rows="4" cols="60">Summarize this dataset</textarea><br><br>
+        <label>CSV File:</label>
+        <input type="file" name="file"><br><br>
+        <input type="submit" value="Ask Agent">
+    </form>
+
+    {% if response %}
+        <h3>Agent Response:</h3>
+        <pre>{{ response }}</pre>
+        <h3>Code Output:</h3>
+        <pre>{{ result }}</pre>
+        {% if 'plot.png' in result or 'plot.png' in response %}
+            <h3>Plot:</h3>
+            <img src="/static/plot.png" width="500">
+        {% endif %}
+    {% endif %}
+</body>
+</html>
